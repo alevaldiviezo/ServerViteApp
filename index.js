@@ -32,8 +32,8 @@ app.use(cors({
 
 // MongoDB connection
 const mongoURI = 
-                // process.env.MONGO_URI; // Use MONGO_URI from .env
-                'mongodb+srv://Hdip:4504610Cba@clusterhdip.yhh0v.mongodb.net/ReactNode?retryWrites=true&w=majority';
+                process.env.MONGO_URI; // Use MONGO_URI from .env
+                // 'mongodb+srv://Hdip:4504610Cba@clusterhdip.yhh0v.mongodb.net/ReactNode?retryWrites=true&w=majority';
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));

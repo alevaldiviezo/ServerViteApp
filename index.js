@@ -25,16 +25,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS configuration
-app.use(cors());
-// app.use(cors({
-//     origin: 'http://localhost:5173', // Replace with your React app's URL
-//     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-// }));
+// app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your React app's URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 // MongoDB connection
 const mongoURI = 
                 process.env.MONGO_URI; // Use MONGO_URI from .env
-                // 'mongodb+srv://Hdip:4504610Cba@clusterhdip.yhh0v.mongodb.net/ReactNode?retryWrites=true&w=majority';
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));

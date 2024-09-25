@@ -27,7 +27,7 @@ app.use(passport.session());
 // CORS configuration
 // app.use(cors());
 app.use(cors({
-    origin: 'https://vite-app1.onrender.com/', // Replace with your React app's URL
+    origin: 'http://localhost:5173/', // Replace with your React app's URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 

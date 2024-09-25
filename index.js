@@ -19,7 +19,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET, // Use SESSION_SECRET from .env
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // Set cookie options
+    cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie options
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -27,7 +27,7 @@ app.use(passport.session());
 // CORS configuration
 // app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your React app's URL
+    origin: 'https://vite-app1.onrender.com', // Replace with your React app's URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 

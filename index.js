@@ -27,7 +27,7 @@ app.use(passport.session());
 // CORS configuration
 // app.use(cors());
 app.use(cors({
-    // origin: 'http://localhost:5173', // Replace with your React app's URL
+    origin: 'https://vite-app1.onrender.com/', // Replace with your React app's URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 
@@ -40,6 +40,9 @@ mongoose.connect(mongoURI)
 
 // Initialize Passport
 initializePassport(passport);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, './client/build'))); // Adjust the path to your build directory
 
 
 
@@ -96,9 +99,6 @@ app.post('/api/logout', (req, res) => {
     });
     // res.json({ message: 'Logged out successfully' });
 });
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, './client/build'))); // Adjust the path to your build directory
 
 // // The "catchall" handler: for any request that doesn't match one above, send back the React app.
 app.get('*', (req, res) => {

@@ -41,9 +41,6 @@ mongoose.connect(mongoURI)
 // Initialize Passport
 initializePassport(passport);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, './client/build'))); // Adjust the path to your build directory
-
 
 
 
@@ -99,6 +96,9 @@ app.post('/api/logout', (req, res) => {
     });
     // res.json({ message: 'Logged out successfully' });
 });
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, './client/build'))); // Adjust the path to your build directory
 
 // // The "catchall" handler: for any request that doesn't match one above, send back the React app.
 app.get('*', (req, res) => {

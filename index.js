@@ -25,11 +25,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS configuration
-app.use(cors());
-// app.use(cors({
-//     origin: 'http://localhost:5173', // Replace with your React app's URL
-//     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-// }));
+// app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your React app's URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 // MongoDB connection
 const mongoURI = 
@@ -48,13 +48,7 @@ app.use(express.static(path.join(__dirname, './client/build'))); // Adjust the p
 
 
 
-// Authentication check route
-app.get('/api/authenticated', (req, res) => {
-    if (req.isAuthenticated()) {
-        return res.json({ authenticated: true, user: req.user });
-    }
-    res.json({ authenticated: false });
-});
+
 
 // Sample route
 app.get('/api', (req, res) => {
@@ -88,6 +82,14 @@ app.post('/api/login', passport.authenticate('local'), (req, res) => {
     res.json({ message: 'Logged in successfully', user: req.user });
 });
 
+// Authentication check route
+app.get('/api/authenticated', (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.json({ authenticated: true, user: req.user });
+    }
+    res.json({ authenticated: false });
+});
+
 // Logout route
 app.post('/api/logout', (req, res) => {
     req.logout((err) => {
@@ -103,6 +105,8 @@ app.post('/api/logout', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './client/build', 'index.html')); // Adjust the path to your build directory
 });
+
+
 
 // Start the server
 app.listen(PORT, () => {
